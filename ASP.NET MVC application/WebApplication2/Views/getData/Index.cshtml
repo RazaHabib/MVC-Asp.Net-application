@@ -1,0 +1,65 @@
+﻿ 
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> Upload your Resume</h2>
+<body>
+
+    @Html.ValidationSummary()
+    <div>
+            <table border="1">
+
+                <tr >
+                @Html.Label("Enter Name: ")  
+                @Html.TextBox("yourName") 
+                @Html.ValidationMessage("yourName", "Please Enter Name")
+                
+                </tr><br>
+                
+                <tr>
+                 @Html.Label("Higest Degree Earned: ")
+                 @Html.TextBox("yourDegree")
+                </tr><br>
+
+                <tr>
+                @Html.Label("Country:")
+                @Html.DropDownList("item","Please Select from Drop Down Items")
+                </tr><br>
+            </table>
+
+        @Html.Label("Years of professional experience: ")
+                 @**Demonstrating another way of populating drop downlist*@
+            <select id="sltCourse" class="sltStyle">
+              <option>Select Professional Experience </option>
+      
+                 @*Iterating Course model using ViewData string as a key *@
+            @foreach (var item in ViewData["experienceInYears"] as List<WebApplication2.Models.YearsOfExperience>)
+            {
+                <option>
+                    @item.ExperienceYears
+            </option>
+            }
+        </select>
+
+
+        
+        @using (Html.BeginForm("fileUploadAction", "getData", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input name="uploadFile" type="file" />
+           // <input type="submit" value="Submit">
+
+        }
+        
+        @ViewData["FileUploaded"]
+
+        @**Now posting data to ActionResult*@   
+      @using (Html.BeginForm("getDataCustomer", "getData"))
+      {
+          <input type="submit" value="Submit">
+      }
+
+    </div>
+</body>
+
+

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "getDataCustomer";
+}
+
+<h1>Preview this file </h1>
+
+ 
+
+@using (Html.BeginForm("finalisedNowSubmit", "getData"))
+{
+    //  <input type="submit" value="Submit">
+    @Html.Label("Please Enter Yes: ") 
+    @Html.TextBox("captcha")
+
+    
+    @Html.ValidationMessage("Captcha")
+   
+    
+
+}
+
